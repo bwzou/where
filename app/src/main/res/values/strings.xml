@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">where</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">设置</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <!-- WelcomeActivity -->
+    <string name="register">注册</string>
+    <string name="login">登陆</string>
+
+    <!-- RegisterActivity -->
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <!-- LoginActivity -->
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="go_register">转到注册</string>
+    <string name="is_landing">正在登录。。。</string>
+
+    <!-- AboutActivity -->
+    <string name="title_activity_about">AboutActivity</string>
+
+    <!-- MainActivity -->
+
+    <!-- conversitionFragment -->
+    <string name="were_mentioned">You were montioned</string>
+    <string name="unable_to_connect">无法连接到网络</string>
+
+</resources>

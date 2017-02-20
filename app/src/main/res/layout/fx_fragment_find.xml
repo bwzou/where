@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EBEBEB"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:id="@+id/re_newworld"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/fx_btn_list_item_bg"
+        android:clickable="true"
+        android:paddingLeft="12dp" >
+
+        <ImageView
+            android:id="@+id/iv_newworld"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/fx_icon_newworld" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iv_newworld"
+            android:text="新世界"
+            android:textColor="#353535"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="12dp"
+            android:background="#dadada" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/re_createworld"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/fx_btn_list_item_bg"
+        android:clickable="true"
+        android:paddingLeft="12dp" >
+
+        <ImageView
+            android:id="@+id/iv_createworld"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/fx_icon_createworld" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iv_createworld"
+            android:text="创世界"
+            android:textColor="#353535"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/re_travel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/fx_btn_list_item_bg"
+        android:clickable="true"
+        android:paddingLeft="12dp" >
+
+        <ImageView
+            android:id="@+id/iv_travel"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/fx_icon_travel" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iv_travel"
+            android:text="旅游"
+            android:textColor="#353535"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="12dp"
+            android:background="#dadada" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/re_shopping"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/fx_btn_list_item_bg"
+        android:clickable="true"
+        android:paddingLeft="12dp" >
+
+        <ImageView
+            android:id="@+id/iv_shopping"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/fx_icon_shopping" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iv_shopping"
+            android:text="购物"
+            android:textColor="#353535"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="12dp"
+            android:background="#dadada" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/re_games"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/fx_btn_list_item_bg"
+        android:clickable="true"
+        android:paddingLeft="12dp" >
+
+        <ImageView
+            android:id="@+id/iv_games"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/fx_icon_games" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iv_games"
+            android:text="游戏"
+            android:textColor="#353535"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/re_unkown"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/fx_btn_list_item_bg"
+        android:clickable="true"
+        android:paddingLeft="12dp" >
+
+        <ImageView
+            android:id="@+id/iv_unkown"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/fx_icon_unkown" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iv_unkown"
+            android:text="探索"
+            android:textColor="#353535"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+</LinearLayout>
