@@ -3,13 +3,11 @@ package com.creation.where.fragment;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.creation.where.R;
 import com.creation.where.activity.LocationMainActivity;
@@ -25,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.creation.where.util.DebugUtils.ShowErrorInf;
 
 public class StatusFragment extends Fragment {
 	private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
@@ -71,11 +71,9 @@ public class StatusFragment extends Fragment {
 		actualListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Log.d("danger","进入Item点击事件！");
 				switch(position)
 				{
 					case 1:         //转到定位的界面去
-//						ShowErrorInf("转到百度地图");
 						Intent intent;
 						intent = new Intent(getActivity(), LocationMainActivity.class);
 						startActivity(intent);
@@ -84,27 +82,24 @@ public class StatusFragment extends Fragment {
 						ShowErrorInf("没有选择内容");
 						break;
 				}
+
 			}
 		});
-
-	}
-
-	public void ShowErrorInf(String s){
-		Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
 	}
 
 	private void getData(final int page_num) throws JSONException {
 		 JSONArray goodArray = new JSONArray(); 
 		 JSONArray albumArray= new JSONArray();
 
-		for (int i = 0; i < 2; i ++)
-		{
+		for (int i = 0; i < 2; i ++) {
 			JSONObject node = new JSONObject();
 			node.put("userID", "刘洋");
 			node.put("content", "今天天气真好啊！");
 			node.put("location", "博白南大街");
 			node.put("sID", "什么鬼");
 			node.put("time", getNowTime());
+			node.put("latitude", 22.560);
+			node.put("longtitude", 114.064);
 			for(int j=0;j<3;j++){
 				JSONObject goodPerson = new JSONObject();
 				goodPerson.put("userID", "李海兰");

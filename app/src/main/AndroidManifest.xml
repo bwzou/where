@@ -55,32 +55,74 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login">
-        </activity>
+            android:label="@string/title_activity_login"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".activity.RegisterActivity"
-            android:label="@string/title_activity_register">
-        </activity>
+            android:label="@string/title_activity_register"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".activity.AboutActivity"
-            android:label="@string/title_activity_about">
-        </activity>
+            android:label="@string/title_activity_about"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".activity.WelcomeActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
-        <!--调用百度地图服务-->
+        <!-- 调用百度地图服务 -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote">
-        </service>
+            android:process=":remote" />
 
         <activity
             android:name=".activity.LocationMainActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.ChatMainActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.MyInfoActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.MyFriendsActivity"
+            android:label="@string/title_activity_my_friends"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.MyFootprintActivity"
+            android:label="@string/title_activity_my_footprint"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.MyAlbumActivity"
+            android:label="@string/title_activity_my_album"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.MyCollectionActivity"
+            android:label="@string/title_activity_my_collection"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.DownloadMapActivity"
+            android:label="@string/title_activity_download_map"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.NewFriendsActivity"
+            android:label="@string/title_activity_new_friends"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.NewWorldActivity"
+            android:label="@string/title_activity_new_world"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity
+            android:name=".activity.CreateWorldActivity"
+            android:label="@string/title_activity_create_world"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity
+            android:name=".activity.TravelActivity"
+            android:label="@string/title_activity_travel"
+            android:theme="@android:style/Theme.NoTitleBar"/>
     </application>
 
 </manifest>

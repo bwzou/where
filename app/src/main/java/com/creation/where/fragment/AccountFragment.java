@@ -11,6 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.creation.where.R;
+import com.creation.where.activity.DownloadMapActivity;
+import com.creation.where.activity.MyFootprintActivity;
+import com.creation.where.activity.MyFriendsActivity;
+import com.creation.where.activity.MyInfoActivity;
+import com.creation.where.activity.SettingsActivity;
+
+import static com.creation.where.R.id.re_setting;
 
 public class AccountFragment extends Fragment implements View.OnClickListener{
 	@Override
@@ -46,7 +53,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         
         getView().findViewById(R.id.re_download).setOnClickListener(this);
         
-        getView().findViewById(R.id.re_setting).setOnClickListener(this);
+        getView().findViewById(re_setting).setOnClickListener(this);
      }
 
     @Override
@@ -66,6 +73,29 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
+        switch (v.getId()){
+            case R.id.re_myinfo:
+                startActivity(new Intent(getActivity(), MyInfoActivity.class));
+                break;
+            case R.id.re_myfriend:
+                startActivity(new Intent(getActivity(), MyFriendsActivity.class));
+                break;
+            case R.id.re_myfoot:
+                startActivity(new Intent(getActivity(), MyFootprintActivity.class));
+                break;
+            case R.id.re_xiangce:
+                //startActivity(new Intent(getActivity(), SocialFriendActivity.class).putExtra("friendID", DemoHelper.getInstance().getCurrentUsernName()));
+                break;
+            case R.id.re_shoucang:
+                //joinQQGroup("ycxd0w_eXmTbKIjyDdHb5Dy_-ZhY8E7t");
+                break;
+            case R.id.re_download:
+                startActivity(new Intent(getActivity(), DownloadMapActivity.class));
+                break;
+            case R.id.re_setting:
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                break;
+        }
 	}
+
 }

@@ -8,12 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="215dp" >
 
-        <ImageView
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/headMapView"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:layout_alignParentTop="true"
-            android:scaleType="center"
-            android:src="@drawable/fx_bg_moments_header" />     <!-- 将来用来显示地图 -->
+            android:scaleType="center" />     <!-- 将来用来显示地图 -->
 
         <ImageView
             android:id="@+id/iv_avatar"

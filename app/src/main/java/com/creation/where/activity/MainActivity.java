@@ -18,7 +18,6 @@ import com.creation.where.fragment.FindFragment;
 import com.creation.where.fragment.StatusFragment;
 import com.creation.where.util.ChatEmojiUtils;
 
-
 public class MainActivity extends Activity {
 	
 	protected static final String TAG = "MainActivity";

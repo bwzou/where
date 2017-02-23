@@ -3,14 +3,30 @@ package com.creation.where.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MyLocationConfiguration;
+import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.model.LatLng;
 import com.creation.where.R;
 
 import org.json.JSONArray;
@@ -30,7 +46,20 @@ public class StatusAdapter extends BaseAdapter {
 	private String myuserID;
 	private int myAvatar;
     private String myNick;
-	
+
+    // 定位相关
+    LocationClient mLocClient;
+    public MyLocationListenner myListener = new MyLocationListenner();
+    private MyLocationConfiguration.LocationMode mCurrentMode;
+    BitmapDescriptor mCurrentMarker;
+    MapView mMapView;
+    BaiduMap mBaiduMap;
+    boolean isFirstLoc = true; // 是否首次定位
+
+    //冲突解决
+    public ListView listView;
+
+
     public StatusAdapter(Activity context1, List<JSONObject> jsonArray) {
         this.context = context1;
 
@@ -70,8 +99,44 @@ public class StatusAdapter extends BaseAdapter {
 		convertView = inflater.inflate(R.layout.fx_item_status, parent,false);
 		if (position == 0) {
             View  view = inflater.inflate(R.layout.fx_item_status_header, null,false);
+            listView = (ListView) parent;
+
+            // 地图初始化
+            mMapView = (MapView) view.findViewById(R.id.headMapView);
+            mBaiduMap = mMapView.getMap();
+            mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.test_money_logo);
+            mCurrentMode = MyLocationConfiguration.LocationMode.COMPASS;
+            mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
+                    mCurrentMode, true, mCurrentMarker,
+                    0xAAFFFF88, 0xAA00FF00));
+            mMapView.removeViewAt(1);//移除百度图标
+            mMapView.showZoomControls(false);
+
+            // 开启定位图层
+            mBaiduMap.setMyLocationEnabled(true);
+            View v = mMapView.getChildAt(0);//这个view实际上就是我们看见的绘制在表面的地图图层（冲突解决）
+            v.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction() == MotionEvent.ACTION_UP){
+                        listView.requestDisallowInterceptTouchEvent(false);
+                    }else{
+                        listView.requestDisallowInterceptTouchEvent(true);
+                    }
+                    return false;
+                }
+            });
+            // 定位初始化
+            mLocClient = new LocationClient(context);
+            mLocClient.registerLocationListener(myListener);
+            LocationClientOption option = new LocationClientOption();
+            option.setOpenGps(true); // 打开gps
+            option.setCoorType("bd09ll"); // 设置坐标类型
+            option.setScanSpan(1000);
+            mLocClient.setLocOption(option);
+            mLocClient.start();
+
             ImageView iv_avatar = (ImageView) view.findViewById(R.id.iv_avatar);
-            //Glide.with(context).load(FXConstant.URL_AVATAR + myAvatar).diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_avatar);
             iv_avatar.setImageResource(myAvatar);
             return view;
         } else {
@@ -81,7 +146,10 @@ public class StatusAdapter extends BaseAdapter {
                 holder.tv_nick = (TextView) convertView.findViewById(R.id.tv_nick);
                 holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
                 holder.iv_avatar = (ImageView) convertView.findViewById(R.id.sdv_image);
-                holder.tv_content = (TextView) convertView.findViewById(R.id.tv_content);
+
+                holder.tv_content=(TextView) convertView.findViewById(R.id.tv_content);
+                holder.contentMapView = (MapView) convertView.findViewById(R.id.tv_content_map);   //百度地图
+
                 holder.tv_location = (TextView) convertView.findViewById(R.id.tv_location);
                 holder.iv_pop = (ImageView) convertView.findViewById(R.id.iv_pop);
 
@@ -107,6 +175,8 @@ public class StatusAdapter extends BaseAdapter {
             String rel_time="";
             JSONArray goodArray;
             JSONArray albumArray;
+            double latitude=23.155;  //维度
+            double longtitude=113.264; //经度
     		try {
     		    userID = json.getString("userID");
     			content = json.getString("content");     //是要显示的地图格子
@@ -115,7 +185,8 @@ public class StatusAdapter extends BaseAdapter {
     	        rel_time = json.getString("time");
     	        goodArray = json.getJSONArray("good");    //点赞
     	        albumArray = json.getJSONArray("album");    //收藏
-    	        
+                latitude=json.getDouble("latitude");
+                longtitude=json.getDouble("longtitude");
     		} catch (JSONException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -160,10 +231,20 @@ public class StatusAdapter extends BaseAdapter {
                 holder.tv_location.setText(location);
             }
             
-            // 显示文章内容
+            // 显示动态内容
 //          setUrlTextView(content, holder.tv_content);
-            holder.tv_content.setText(content);
-            
+            holder.tv_content.setText(content);      //弄一个静态图吧
+            holder.contentMap=holder.contentMapView.getMap();
+            MapStatusUpdate status=MapStatusUpdateFactory.newLatLng(new LatLng(latitude,longtitude));
+            holder.contentMap.setMapStatus(status);
+
+            mCurrentMode = MyLocationConfiguration.LocationMode.COMPASS;
+            holder.contentMap.setMyLocationConfigeration(new MyLocationConfiguration(
+                    mCurrentMode, true, mCurrentMarker,
+                    0xAAFFFF88, 0xAA00FF00));
+            holder.contentMapView.removeViewAt(1);//移除百度图标
+            holder.contentMapView.showZoomControls(false);
+
             final ImageView iv_temp = holder.iv_pop;
             final LinearLayout ll_goodmembers_temp = holder.ll_goodmembers;
             
@@ -216,6 +297,8 @@ public class StatusAdapter extends BaseAdapter {
 
         // 动态内容
         TextView tv_content;
+        MapView contentMapView;
+        BaiduMap contentMap;
 
         // 删除
         TextView tv_delete;
@@ -288,5 +371,36 @@ public class StatusAdapter extends BaseAdapter {
 
 		}
 	}
+
+    /**
+     * 定位SDK监听函数
+     */
+     class MyLocationListenner implements BDLocationListener {
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            // map view 销毁后不在处理新接收的位置
+            if (location == null || mMapView == null) {
+                return;
+            }
+            MyLocationData locData = new MyLocationData.Builder()
+                    .accuracy(location.getRadius())
+                    // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .direction(100).latitude(location.getLatitude())
+                    .longitude(location.getLongitude()).build();
+            mBaiduMap.setMyLocationData(locData);
+            if (isFirstLoc) {
+                isFirstLoc = false;
+                LatLng ll = new LatLng(location.getLatitude(),
+                        location.getLongitude());
+                MapStatus.Builder builder = new MapStatus.Builder();
+                builder.target(ll).zoom(18.0f);
+                mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+            }
+        }
+
+        public void onReceivePoi(BDLocation poiLocation) {
+        }
+    }
 	
 }

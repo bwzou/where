@@ -49,6 +49,7 @@
         android:layout_width="fill_parent"
         android:layout_height="110dip"
         android:layout_below="@id/rl_input"
+        android:visibility="gone"
         android:background="#f6f5f5"
          >
 

@@ -14,4 +14,13 @@
     <color name="btn_edit_visible">#90000000</color>
     <color name="btn_edit_invisible">#70000000</color>
     <color name="btn_go_pick">#50000000</color>
+
+    <!-- settingsActivity -->
+    <color name="btn_pressed_green_solid">#B6DA53</color>
+    <color name="btn_gray_normal">#c0c0c0</color>
+    <color name="btn_gray_pressed_status">#b5b5b6</color>
+    <color name="btn_gray_pressed">#666667</color>
+    <color name="btn_logout_normal">#d33f3f</color>
+    <color name="btn_logout_pressed">#DA5A4D</color>
+
 </resources>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="64dp"
     android:id="@+id/list_itease_layout"
-    android:background="#fff"
+    android:background="@drawable/fx_btn_list_item_bg"
     android:gravity="center_vertical" >
 
     <RelativeLayout

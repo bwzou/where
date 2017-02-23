@@ -51,7 +51,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@id/iv_avatar"
-            android:text="微信号:"
+            android:text="where号:"
             android:textColor="#AAAAAA"
             android:textSize="14sp" />
 
@@ -124,7 +124,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/iv_myfoot"
-            android:text="我的足迹"
+            android:text="我的足记"
             android:textColor="#353535"
             android:textSize="16sp" />
     </RelativeLayout>

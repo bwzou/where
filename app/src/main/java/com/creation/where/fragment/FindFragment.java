@@ -1,12 +1,16 @@
 package com.creation.where.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.creation.where.R;
+import com.creation.where.activity.CreateWorldActivity;
+import com.creation.where.activity.NewWorldActivity;
+import com.creation.where.activity.TravelActivity;
 
 public class FindFragment extends Fragment implements View.OnClickListener{
 	    @Override
@@ -29,7 +33,25 @@ public class FindFragment extends Fragment implements View.OnClickListener{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
+			switch (v.getId()) {
+				case R.id.re_newworld:
+					startActivity(new Intent(getActivity(), NewWorldActivity.class));
+					break;
+				case R.id.re_createworld:
+					startActivity(new Intent(getActivity(), CreateWorldActivity.class));
+					break;
+				case R.id.re_travel:
+					startActivity(new Intent(getActivity(), TravelActivity.class));
+					break;
+				case R.id.re_shopping:
+					//joinQQGroup("ycxd0w_eXmTbKIjyDdHb5Dy_-ZhY8E7t");
+					break;
+				case R.id.re_games:
+					//startActivity(new Intent(getActivity(), SocialFriendActivity.class).putExtra("friendID", DemoHelper.getInstance().getCurrentUsernName()));
+					break;
+				case R.id.re_unkown:
+					//joinQQGroup("ycxd0w_eXmTbKIjyDdHb5Dy_-ZhY8E7t");
+					break;
+			}
 		}
-
 }

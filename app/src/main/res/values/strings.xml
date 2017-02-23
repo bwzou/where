@@ -26,5 +26,15 @@
     <!-- conversitionFragment -->
     <string name="were_mentioned">You were montioned</string>
     <string name="unable_to_connect">无法连接到网络</string>
+    <string name="title_activity_my_info">MyInfoActivity</string>
+    <string name="title_activity_my_friends">MyFriendsActivity</string>
+    <string name="title_activity_my_footprint">MyFootprintActivity</string>
+    <string name="title_activity_my_album">MyAlbumActivity</string>
+    <string name="title_activity_my_collection">MyCollectionActivity</string>
+    <string name="title_activity_download_map">DownloadMapActivity</string>
+    <string name="title_activity_new_friends">NewFriendsActivity</string>
+    <string name="title_activity_new_world">NewWorldActivity</string>
+    <string name="title_activity_create_world">CreateWorldActivity</string>
+    <string name="title_activity_travel">TravelActivity</string>
 
 </resources>

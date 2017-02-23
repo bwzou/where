@@ -5,13 +5,55 @@ package com.creation.where.po;
  */
 
 public class MapChatMsgEntity {
-    private String name;
+    private String name;  //md5值
 
-    private String date;
+    private String date;  //时间
 
-    private String text;
+    private String text;  //内容
+
+    private double latitude;   //地点
+
+    private double longtitude;
+
+    private double formUser;
+
+    private double toUser;
 
     private boolean isComMeg = true;     //是否使用表情资源
+
+    private boolean isRead = false;
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(double longtitude) {
+        this.longtitude = longtitude;
+    }
+
+    public double getFormUser() {
+        return formUser;
+    }
+
+    public void setFormUser(double formUser) {
+        this.formUser = formUser;
+    }
+
+    public double getToUser() {
+        return toUser;
+    }
+
+    public void setToUser(double toUser) {
+        this.toUser = toUser;
+    }
 
     public String getName() {
         return name;
@@ -48,12 +90,16 @@ public class MapChatMsgEntity {
     public MapChatMsgEntity() {
     }
 
-    public MapChatMsgEntity(String name, String date, String text, boolean isComMsg) {
-        super();
+    public MapChatMsgEntity(String name, String date, String text, double latitude, double formUser,
+                            double longtitude, double toUser, boolean isComMeg,boolean isRead) {
         this.name = name;
         this.date = date;
         this.text = text;
-        this.isComMeg = isComMsg;
+        this.latitude = latitude;
+        this.formUser = formUser;
+        this.longtitude = longtitude;
+        this.toUser = toUser;
+        this.isComMeg = isComMeg;
+        this.isRead=isRead;
     }
-
 }

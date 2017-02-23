@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -137,6 +136,7 @@ public class LocationMainActivity extends Activity {
         mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
                         mCurrentMode, true, mCurrentMarker,
                         accuracyCircleFillColor, accuracyCircleStrokeColor));
+        mMapView.removeViewAt(1);//移除百度图标
 
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
@@ -153,7 +153,7 @@ public class LocationMainActivity extends Activity {
 
     //初始化评论的pop
     private void initPop(BDLocation location) {
-        pop = View.inflate(getApplicationContext(), R.layout.cv_editing, null);
+        pop = View.inflate(getApplicationContext(), R.layout.custom_pop, null);
         Log.i("位置为维度"+location.getLatitude(),"经度"+location.getLongitude());
 
         //必须使用百度的params
@@ -240,10 +240,6 @@ public class LocationMainActivity extends Activity {
         mMapView.onDestroy();
         mMapView = null;
         super.onDestroy();
-    }
-
-    public void ShowErrorInf(String s){
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
 }
