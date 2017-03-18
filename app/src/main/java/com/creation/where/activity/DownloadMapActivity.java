@@ -230,4 +230,8 @@ public class DownloadMapActivity extends Activity implements MKOfflineMapListene
         }
     }
 
+    public void back(View view) {
+        finish();
+    }
+
 }

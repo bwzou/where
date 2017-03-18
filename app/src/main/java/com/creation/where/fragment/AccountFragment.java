@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.creation.where.R;
 import com.creation.where.activity.DownloadMapActivity;
+import com.creation.where.activity.MyAlbumActivity;
+import com.creation.where.activity.MyCollectionActivity;
 import com.creation.where.activity.MyFootprintActivity;
 import com.creation.where.activity.MyFriendsActivity;
 import com.creation.where.activity.MyInfoActivity;
@@ -84,10 +86,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(getActivity(), MyFootprintActivity.class));
                 break;
             case R.id.re_xiangce:
-                //startActivity(new Intent(getActivity(), SocialFriendActivity.class).putExtra("friendID", DemoHelper.getInstance().getCurrentUsernName()));
+                startActivity(new Intent(getActivity(), MyAlbumActivity.class));
                 break;
             case R.id.re_shoucang:
-                //joinQQGroup("ycxd0w_eXmTbKIjyDdHb5Dy_-ZhY8E7t");
+                startActivity(new Intent(getActivity(), MyCollectionActivity.class));
                 break;
             case R.id.re_download:
                 startActivity(new Intent(getActivity(), DownloadMapActivity.class));

@@ -1,12 +1,14 @@
 package com.creation.where.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,12 +16,21 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.creation.where.R;
+import com.creation.where.po.User;
+import com.creation.where.util.Constants;
+import com.creation.where.util.HttpUtils;
+import com.google.gson.Gson;
+
+import static com.creation.where.util.DebugUtils.ShowErrorInf;
 
 public class LoginActivity extends Activity {
-	 private EditText et_usertel;
-	    private EditText et_password;
-	    private Button btn_login;
-	    private Button btn_qtlogin;
+    private EditText et_usertel;
+    private EditText et_password;
+    private Button btn_login;
+    private Button btn_qtlogin;
+
+    private Handler handler;
+    public  ProgressDialog pd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +67,12 @@ public class LoginActivity extends Activity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //loginInSever(et_usertel.getText().toString(), et_password.getText().toString());
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
+                pd = new ProgressDialog(LoginActivity.this);
+                pd.setCanceledOnTouchOutside(false);
+                pd.setMessage(getString(R.string.is_landing));
+                pd.show();
+                // 开始连接本地服务器
+                loginInSever(et_usertel.getText().toString(), et_password.getText().toString());
             }
         });
 
@@ -69,65 +83,81 @@ public class LoginActivity extends Activity {
                 finish();
             }
         });
+
+        this.handler=new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == 1) {
+                    if (Constants.user == null){
+                        ShowErrorInf("用户名或者密码错误！");
+                    }
+                    else {
+                        setUser(Constants.user);
+                        Intent intent = new Intent(LoginActivity.this,  MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    pd.dismiss();
+                } else if (msg.what == -1){
+                    pd.dismiss();
+                    ShowErrorInf( "服务器请求异常！");
+                }
+                else if (msg.what == 0){
+                    pd.dismiss();
+                    ShowErrorInf( "网络异常！");
+                }
+            }
+        };
         
 	}
 
-	private void loginInSever(String tel, String password) {
-        final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
-        pd.setCanceledOnTouchOutside(false);
-        pd.setMessage(getString(R.string.is_landing));
-        pd.show();
-        
-        
-//        List<Param> params = new ArrayList<Param>();
-//        params.add(new Param("usertel", tel));
-//        params.add(new Param("password", password));
-//        OkHttpManager.getInstance().post(params, FXConstant.URL_LOGIN, new OkHttpManager.HttpCallBack() {
-//            @Override
-//            public void onResponse(JSONObject jsonObject) {
-//                int code = jsonObject.getInteger("code");
-//                if (code == 1000) {
-//                    JSONObject json = jsonObject.getJSONObject("user");
-//                    JSONArray friends=json.getJSONArray("friends");
-//                    Map<String, EaseUser> userlist = new HashMap<String, EaseUser>();
-//                    if (friends != null) {
-//                        for (int i = 0; i < friends.size(); i++) {
-//                            JSONObject friend = friends.getJSONObject(i);
-//                            EaseUser easeUser = JSONUtil.Json2User(friend);
-//                            userlist.put(easeUser.getUsername(), easeUser);
-//                        }
-//                        // save the contact list to cache
-//                        DemoHelper.getInstance().getContactList().clear();
-//                        DemoHelper.getInstance().getContactList().putAll(userlist);
-//                        // save the contact list to database
-//                        UserDao dao = new UserDao(getApplicationContext());
-//                        List<EaseUser> users = new ArrayList<EaseUser>(userlist.values());
-//                        dao.saveContactList(users);
-//                    }
-//
-//                    loginHuanXin(json, pd);
-//                } else if (code == 2001) {
-//                    pd.dismiss();
-//                    Toast.makeText(LoginActivity.this,
-//                            "�˺Ż��������...", Toast.LENGTH_SHORT)
-//                            .show();
-//                }else {
-//                    pd.dismiss();
-//                    Toast.makeText(LoginActivity.this,
-//                            "��������æ������...", Toast.LENGTH_SHORT)
-//                            .show();
-//                }
-//            }
-//            @Override
-//            public void onFailure(String errorMsg) {
-//
-//            }
-//        });
+	private void loginInSever(String phone_number, String password) {
+//        List<Param> params=new ArrayList<>();
+//        params.add(new Param("option","login"));
+//        params.add(new Param("username",phone_number));
+//        params.add(new Param("password",password));
+
+        final String phone=phone_number;
+        final String pwd=password;
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run() {
+                // 发送用户名和密码到服务器进行校验，并获得服务器返回值
+                StringBuffer params = new StringBuffer();
+                params.append("option=").append("login");
+                params.append("&phone_number=").append(phone);
+                params.append("&password=").append(pwd);
+                String encode = "utf-8";
+
+                String res= HttpUtils.getJsonContent(Constants.USR_LOGIN,encode,params);
+                Looper.prepare();
+                if (res.equals("")||res==null) {
+                    handler.sendEmptyMessage(-1);
+                }else{
+                    Gson gson = new Gson();
+                    Constants.user = gson.fromJson(res, User.class);
+                    handler.sendEmptyMessage(1);
+                }
+                Looper.loop();
+            }
+        }).start();
+    }
+
+    /**
+     * 保存整个User
+     */
+    public void setUser(User user){
+        //定义一个可以存放全局变量的东西
+        SharedPreferences settings = this.getSharedPreferences("UserInfo", MODE_PRIVATE);
+
+        Editor editor = settings.edit();
+        editor.putString("usernId", user.getPhone_number());
+        editor.commit();   // 提交更改
     }
 
     //EditText监听器
     class TextChange implements TextWatcher {
-
         @Override
         public void afterTextChanged(Editable arg0) {
 

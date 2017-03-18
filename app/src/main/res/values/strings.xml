@@ -17,6 +17,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="go_register">转到注册</string>
     <string name="is_landing">正在登录。。。</string>
+    <string name="is_registering">正在注册。。。</string>
 
     <!-- AboutActivity -->
     <string name="title_activity_about">AboutActivity</string>
@@ -36,5 +37,7 @@
     <string name="title_activity_new_world">NewWorldActivity</string>
     <string name="title_activity_create_world">CreateWorldActivity</string>
     <string name="title_activity_travel">TravelActivity</string>
+    <string name="title_activity_about_tabs">AboutTabsActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

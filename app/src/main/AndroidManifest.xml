@@ -42,10 +42,10 @@
             android:value="k7YTS5DlnQMWlkBWRknHv44AKg9wjj2Q" />
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.WelcomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,8 +66,8 @@
             android:label="@string/title_activity_about"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".activity.WelcomeActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:name=".activity.MainActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
 
         <!-- 调用百度地图服务 -->
         <service
@@ -114,15 +114,15 @@
         <activity
             android:name=".activity.NewWorldActivity"
             android:label="@string/title_activity_new_world"
-            android:theme="@android:style/Theme.NoTitleBar"/>
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".activity.CreateWorldActivity"
             android:label="@string/title_activity_create_world"
-            android:theme="@android:style/Theme.NoTitleBar"/>
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".activity.TravelActivity"
             android:label="@string/title_activity_travel"
-            android:theme="@android:style/Theme.NoTitleBar"/>
+            android:theme="@android:style/Theme.NoTitleBar" />
     </application>
 
 </manifest>

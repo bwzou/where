@@ -1,7 +1,13 @@
 package com.creation.where.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.Editable;
 import android.text.Html;
 import android.text.Selection;
@@ -18,6 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.creation.where.R;
+import com.creation.where.po.User;
+import com.creation.where.util.Constants;
+import com.creation.where.util.HttpUtils;
+
+import static com.creation.where.util.DebugUtils.ShowErrorInf;
 
 public class RegisterActivity extends Activity {
 	private EditText et_usernick;
@@ -33,6 +44,9 @@ public class RegisterActivity extends Activity {
     private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
+
+    private Handler handler;
+    public  ProgressDialog pd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,13 +123,92 @@ public class RegisterActivity extends Activity {
                 String usernick = et_usernick.getText().toString().trim();
                 String password = et_password.getText().toString().trim();
                 String usertel = et_usertel.getText().toString().trim();
-                //register(usernick, password, usertel);
-                Toast.makeText(RegisterActivity.this,
-                        "转到注册", Toast.LENGTH_SHORT).show();
+                pd = new ProgressDialog(RegisterActivity.this);
+                pd.setCanceledOnTouchOutside(false);
+                pd.setMessage(getString(R.string.is_registering));
+                pd.show();
+                register(usernick, password, usertel);
+
             }
         });
+
+        this.handler=new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == 1) {
+                    ShowErrorInf( "注册成功！");
+                    setUser(Constants.user);
+                    Intent intent = new Intent(RegisterActivity.this,  MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    pd.dismiss();
+                } else if (msg.what == -1){
+                    pd.dismiss();
+                    ShowErrorInf( "服务器请求异常！");
+                }
+                else if (msg.what == -2){
+                    pd.dismiss();
+                    ShowErrorInf( "该号码已经被注册！");
+                }
+                else if (msg.what == 0){
+                    pd.dismiss();
+                    ShowErrorInf( "网络异常！");
+                }
+            }
+        };
 	}
 
+    private void register(String usernick, String password, String usertel) {
+//        List<Param> params=new ArrayList<>();
+//        params.add(new Param("option","login"));
+//        params.add(new Param("username",phone_number));
+//        params.add(new Param("password",password));
+
+        Constants.user=new User();
+        Constants.user.setNickname(usernick);
+        Constants.user.setPhone_number(usertel);
+        Constants.user.setPassword(password);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run() {
+                // 发送用户名和密码到服务器进行校验，并获得服务器返回值
+                StringBuffer params = new StringBuffer();
+                params.append("option=").append("register");
+                params.append("&nickname=").append(Constants.user.getNickname());
+                params.append("&phone_number=").append(Constants.user.getPhone_number());
+                params.append("&password=").append(Constants.user.getPassword());
+                String encode = "utf-8";
+
+                String res= HttpUtils.getJsonContent(Constants.USR_LOGIN,encode,params);
+                Looper.prepare();
+                if (res.equals("")||res==null) {
+                    handler.sendEmptyMessage(-1);
+                }else{
+                    int tmp=Integer.parseInt(res);
+                    if(tmp==1)
+                        handler.sendEmptyMessage(1);
+                    else if(tmp==-1)
+                        handler.sendEmptyMessage(-1);
+                    else if(tmp==-2)
+                        handler.sendEmptyMessage(-2);
+                }
+                Looper.loop();
+            }
+        }).start();
+    }
+
+    /**
+     * 保存整个User
+     */
+    public void setUser(User user){
+        //定义一个可以存放全局变量的东西
+        SharedPreferences settings = this.getSharedPreferences("UserInfo", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("usernId", user.getPhone_number());
+        editor.commit();   // 提交更改
+    }
 
 	// EditText监听器
     class TextChange implements TextWatcher {
@@ -150,5 +243,5 @@ public class RegisterActivity extends Activity {
     public void back(View view) {
         finish();
     }
-	
+
 }
