@@ -88,7 +88,7 @@ public class LoginActivity extends Activity {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == 1) {
-                    if (Constants.user == null){
+                    if (Constants.user.getPhone_number() == null || Constants.user.getId()== 0){
                         ShowErrorInf("用户名或者密码错误！");
                     }
                     else {
@@ -111,6 +111,11 @@ public class LoginActivity extends Activity {
         
 	}
 
+    /**
+     * 用户注册
+     * @param phone_number
+     * @param password
+     */
 	private void loginInSever(String phone_number, String password) {
 //        List<Param> params=new ArrayList<>();
 //        params.add(new Param("option","login"));
@@ -150,13 +155,14 @@ public class LoginActivity extends Activity {
     public void setUser(User user){
         //定义一个可以存放全局变量的东西
         SharedPreferences settings = this.getSharedPreferences("UserInfo", MODE_PRIVATE);
-
         Editor editor = settings.edit();
-        editor.putString("usernId", user.getPhone_number());
-        editor.commit();   // 提交更改
+        editor.putString("userPhoneNumber", user.getPhone_number());
+        editor.commit();
     }
 
-    //EditText监听器
+    /**
+     * EditText监听器
+     */
     class TextChange implements TextWatcher {
         @Override
         public void afterTextChanged(Editable arg0) {

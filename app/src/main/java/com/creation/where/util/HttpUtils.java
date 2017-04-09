@@ -47,6 +47,9 @@ public class HttpUtils {
             int responseCode = Constants.CONN.getResponseCode();
             if (200 == responseCode) {
                 jsonString = changeInputStream(Constants.CONN.getInputStream(),encode);
+                Log.i("ServerResponse","服务器返回内容为： "+jsonString);
+            }else{
+//                jsonString=responseCode+"";
             }
         } catch (Exception e) {
             e.printStackTrace();

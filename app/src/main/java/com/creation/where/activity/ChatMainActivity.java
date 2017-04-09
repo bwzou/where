@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,6 +30,18 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.creation.where.R;
 import com.creation.where.po.MapChatMsg;
+import com.creation.where.po.Message;
+import com.creation.where.po.Param;
+import com.creation.where.util.Constants;
+import com.creation.where.util.HttpUtils;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static com.creation.where.util.DebugUtils.ShowErrorInf;
 
 public class ChatMainActivity extends Activity {
     // 定位相关
@@ -43,14 +57,21 @@ public class ChatMainActivity extends Activity {
 
     // UI相关
     Button requestLocButton;
-    boolean isMyFirstMsg=true;
     boolean isFirstLoc = true; // 是否首次定位
 
     //聊天
-    private View pop;       //要显示的pop
-    private TextView title;     //文本信息
-    public BDLocation mylocate = new BDLocation();
+    private View onePop;
+    private TextView oneMsg;
+    public BDLocation myLocate = new BDLocation();
     public Marker marker=null;
+    boolean isMyFirstMsg=true;
+    public Gson gson = new Gson();
+    private Handler handler;
+    private View otherPop;
+    private TextView otherMsg;
+    public Marker otherMarker=null;
+    boolean isOtherFirstMsg=true;
+    private Message otherMessage=null;
 
     //内容编辑
     private Button mBtnSend;
@@ -104,12 +125,13 @@ public class ChatMainActivity extends Activity {
         View.OnClickListener btnSendClickListener = new View.OnClickListener() {
             public void onClick(View v) {
                 //获取内容并且显示
-                drawMark(mylocate);
+                setMessage();
+                drawMark(myLocate);
                 if(isMyFirstMsg){
-                    initPop(mylocate);
+                    initPop(myLocate);
                     isMyFirstMsg=false;
                 }else
-                    updatePop(mylocate);
+                    updatePop(myLocate);
                 //清空EditText内容
                 mEditTextContent.setText("");
             }
@@ -141,50 +163,215 @@ public class ChatMainActivity extends Activity {
         Bundle bundle=intent.getExtras();
         MapChatMsg mapChatMsg=(MapChatMsg)bundle.getSerializable("mapChatMsg");
 
+        this.handler=new Handler(){
+            @Override
+            public void handleMessage(android.os.Message msg) {
+                if (msg.what == 1) {
+//                    drawOtherMark(otherMessage.getLatitude(),otherMessage.getLongitude());
+                    drawOtherMark(22.747752,113.604378);
+                    if(isOtherFirstMsg){
+                        initOtherPop(otherMessage.getMsg(),otherMessage.getLatitude(),otherMessage.getLongitude());
+                        isOtherFirstMsg=false;
+                    }else
+                        updateOtherPop(otherMessage.getMsg(),otherMessage.getLatitude(),otherMessage.getLongitude());
+                } else if (msg.what == 0){
+                    ShowErrorInf( "服务器请求异常！");
+                }
+                else if (msg.what == -1){
+                    ShowErrorInf( "网络异常！");
+                }
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                getMessage();
+            }
+        }, 0, 5000); //0秒之后，每隔1秒做一次run()操作
     }
 
-    //初始化评论的pop
+    /**
+     *消息存储
+     */
+    private void setMessage(){
+        //构造Message类
+        Message message=new Message();
+        message.setFrom_user_id(Constants.user.getId());
+        message.setTo_user_id(13);
+        message.setMsg(mEditTextContent.getText().toString());
+        message.setLatitude(myLocate.getLatitude());
+        message.setLongitude(myLocate.getLongitude());
+
+        final List<Param> params=new ArrayList<>();
+        params.add(new Param("option","insert"));
+        params.add(new Param("message",message));
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run() {
+                String jsonString = gson.toJson(params);
+                StringBuffer content = new StringBuffer();
+                content.append("content=").append(jsonString);
+                String encode = "utf-8";
+                String res= HttpUtils.getJsonContent(Constants.USR_MESSAGE,encode,content);
+
+                Looper.prepare();
+                if (res.equals("")||res==null) {
+                    handler.sendEmptyMessage(-1);
+                }
+                Looper.loop();
+            }
+        }).start();
+    }
+
+    /**
+     * 消息获取
+     */
+    private Message getMessage() {     //实际生产中都是有服务器推送的
+        //查找最近一次的未读消息
+        Message message=new Message();
+        message.setFrom_user_id(5);
+        message.setTo_user_id(13);
+
+        final List<Param> params=new ArrayList<>();
+        params.add(new Param("option","selectOne"));
+        params.add(new Param("message",message));
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run() {
+                String jsonString = gson.toJson(params);
+                StringBuffer content = new StringBuffer();
+                content.append("content=").append(jsonString);
+                String encode = "utf-8";
+                String res= HttpUtils.getJsonContent(Constants.USR_MESSAGE,encode,content);
+
+                Looper.prepare();
+                if (res.equals("")||res==null) {
+                    handler.sendEmptyMessage(-1);
+                }else {
+                    handler.sendEmptyMessage(1);
+                    otherMessage=gson.fromJson(res,Message.class);
+                }
+                Looper.loop();
+            }
+        }).start();
+        return null;
+    }
+
+    /**
+     * 初始化个人的pop
+     * @param location
+     */
     private void initPop(BDLocation location) {
-        pop = View.inflate(getApplicationContext(), R.layout.custom_pop, null);
+        onePop = View.inflate(getApplicationContext(), R.layout.custom_pop, null);
         //必须使用百度的params
         ViewGroup.LayoutParams params = new MapViewLayoutParams.Builder().layoutMode(MapViewLayoutParams.ELayoutMode.mapMode) //按照经纬度设置
                 .position(new LatLng(location.getLatitude(), location.getLongitude())) //这个坐标无所谓的，但是不能传null
                 .width(MapViewLayoutParams.WRAP_CONTENT)  //宽度
                 .height(MapViewLayoutParams.WRAP_CONTENT)  //高度
                 .build();
-        mMapView.addView(pop,params);
+        mMapView.addView(onePop,params);
         //默认设置显示
-        pop.setVisibility(View.VISIBLE);
+        onePop.setVisibility(View.VISIBLE);
         //初始化这个title
-        title = (TextView) pop.findViewById(R.id.et_msg);
-        title.setText(mEditTextContent.getText());  //不能使用toString方法，因为存在SpannableString
+        oneMsg = (TextView) onePop.findViewById(R.id.et_msg);
+        oneMsg.setText(mEditTextContent.getText());     //不能使用toString方法，因为存在SpannableString
     }
 
-    // 更新消息显示的pop
+    /**
+     * 更新个人消息显示的pop
+     * @param location
+     */
     private void updatePop(BDLocation location){
         ViewGroup.LayoutParams params = new MapViewLayoutParams.Builder().layoutMode(MapViewLayoutParams.ELayoutMode.mapMode) //按照经纬度设置
                 .position(new LatLng(location.getLatitude(), location.getLongitude())) //这个坐标无所谓的，但是不能传null
                 .width(MapViewLayoutParams.WRAP_CONTENT)
                 .height(MapViewLayoutParams.WRAP_CONTENT)
                 .build();
-        mMapView.updateViewLayout(pop, params);
-        pop.setVisibility(View.VISIBLE);
-        title = (TextView) pop.findViewById(R.id.et_msg);
-        title.setText(mEditTextContent.getText());
+        mMapView.updateViewLayout(onePop, params);
+        onePop.setVisibility(View.VISIBLE);
+        oneMsg = (TextView) onePop.findViewById(R.id.et_msg);
+        oneMsg.setText(mEditTextContent.getText());
     }
 
-    // 绘制mark覆盖物
+    /**
+     * 绘制个人mark覆盖物
+     * @param location
+     */
     private void drawMark(BDLocation location) {
         if(marker!=null)
             marker.remove();
         MarkerOptions markerOptions = new MarkerOptions();
         BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.drawable.test_money_logo); // 描述图片
         markerOptions.position(new LatLng(location.getLatitude(), location.getLongitude())) // 设置位置
-                .icon(bitmap) // 加载图片
-                .draggable(true) // 支持拖拽
-                .title("世界之窗旁边的草房"); // 显示文本
+                .icon(bitmap)   // 加载图片
+                .draggable(true)   // 支持拖拽
+                .title("世界之窗旁边的草房");  // 显示文本
         //把绘制的圆添加到百度地图上去
         marker=(Marker)mBaiduMap.addOverlay(markerOptions);
+    }
+
+    /**
+     * 初始化对方的pop
+     * @param text
+     * @param latitude
+     * @param longitude
+     */
+    private void initOtherPop(String text,double latitude,double longitude) {
+        otherPop = View.inflate(getApplicationContext(), R.layout.custom_pop_other, null);
+        //必须使用百度的params
+        ViewGroup.LayoutParams params = new MapViewLayoutParams.Builder().layoutMode(MapViewLayoutParams.ELayoutMode.mapMode) //按照经纬度设置
+                .position(new LatLng(latitude, longitude)) //这个坐标无所谓的，但是不能传null
+                .width(MapViewLayoutParams.WRAP_CONTENT)  //宽度
+                .height(MapViewLayoutParams.WRAP_CONTENT)  //高度
+                .build();
+        mMapView.addView(otherPop,params);
+        //默认设置显示
+        otherPop.setVisibility(View.VISIBLE);
+        //初始化这个title
+        otherMsg = (TextView) otherPop.findViewById(R.id.other_msg);
+        otherMsg.setText(text);
+    }
+
+    /**
+     * 更新对方消息显示的pop
+     * @param text
+     * @param latitude
+     * @param longitude
+     */
+    private void updateOtherPop(String text,double latitude,double longitude){
+        ViewGroup.LayoutParams params = new MapViewLayoutParams.Builder().layoutMode(MapViewLayoutParams.ELayoutMode.mapMode) //按照经纬度设置
+                .position(new LatLng(latitude, longitude)) //这个坐标无所谓的，但是不能传null
+                .width(MapViewLayoutParams.WRAP_CONTENT)
+                .height(MapViewLayoutParams.WRAP_CONTENT)
+                .build();
+        mMapView.updateViewLayout(otherPop, params);
+        otherPop.setVisibility(View.VISIBLE);
+        otherMsg = (TextView) otherPop.findViewById(R.id.other_msg);
+        otherMsg.setText(text);
+    }
+
+    /**
+     * 绘制对方mark覆盖物
+     * @param latitude
+     * @param longitude
+     */
+    private void drawOtherMark(double latitude,double longitude) {
+        if(otherMarker!=null)
+            otherMarker.remove();
+        MarkerOptions markerOptions = new MarkerOptions();
+        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.drawable.test_zhirun_logo); // 描述图片
+        markerOptions.position(new LatLng(latitude, longitude)) // 设置位置
+                .icon(bitmap)   // 加载图片
+                .draggable(true)   // 支持拖拽
+                .title("世界之窗旁边的草房");  // 显示文本
+        //把绘制的圆添加到百度地图上去
+        otherMarker=(Marker)mBaiduMap.addOverlay(markerOptions);
     }
 
     /**
@@ -213,8 +400,8 @@ public class ChatMainActivity extends Activity {
                 mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }
             //获取位置信息
-            mylocate.setLatitude(location.getLatitude());
-            mylocate.setLongitude(location.getLongitude());
+            myLocate.setLatitude(location.getLatitude());
+            myLocate.setLongitude(location.getLongitude());
         }
 
         public void onReceivePoi(BDLocation poiLocation) {

@@ -158,6 +158,12 @@ public class RegisterActivity extends Activity {
         };
 	}
 
+    /**
+     * 用户注册
+     * @param usernick
+     * @param password
+     * @param usertel
+     */
     private void register(String usernick, String password, String usertel) {
 //        List<Param> params=new ArrayList<>();
 //        params.add(new Param("option","login"));
@@ -204,13 +210,14 @@ public class RegisterActivity extends Activity {
     public void setUser(User user){
         //定义一个可以存放全局变量的东西
         SharedPreferences settings = this.getSharedPreferences("UserInfo", MODE_PRIVATE);
-
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("usernId", user.getPhone_number());
-        editor.commit();   // 提交更改
+        editor.putString("userPhoneNumber", user.getPhone_number());
+        editor.commit();
     }
 
-	// EditText监听器
+    /**
+     * EditText监听器
+     */
     class TextChange implements TextWatcher {
 
         @Override

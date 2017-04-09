@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 public class Constants {
     public static final String HOST="http://192.168.1.100:8080/whereserver/";
     public static final String USR_LOGIN=HOST+"LoginController";
+    public static final String USR_MESSAGE=HOST+"MessageController";
     public static HttpURLConnection CONN=null;
 
     public static User user=null;   //全局变量

@@ -6,9 +6,9 @@ package com.creation.where.po;
 
 public class Param {
     private String key;
-    private String value;
+    private Object value;
 
-    public Param(String key, String value) {
+    public Param(String key, Object value) {
         this.key = key;
         this.value = value;
     }
@@ -17,7 +17,7 @@ public class Param {
         return key;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 
