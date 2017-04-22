@@ -32,19 +32,21 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:scaleType="center" />  -->
-    
+
     <LinearLayout
         android:id="@+id/welcome_linear_ctrlbar"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="140dip"
         android:background="@drawable/bg_welcome_ctrlbar"
         android:gravity="center_horizontal|bottom"
         android:orientation="vertical"
         android:paddingBottom="35dip"
         android:paddingLeft="5dip"
         android:paddingRight="5dip"
-        android:paddingTop="13dip" >
+        android:paddingTop="13dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -78,7 +80,7 @@
                 android:layout_marginLeft="10dip"
                 android:background="@drawable/btn_default_white"
                 android:src="@drawable/ic_welcome_about_normal" />
-            
+
         </LinearLayout>
     </LinearLayout>
 

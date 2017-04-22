@@ -30,16 +30,16 @@ public class HttpUtils {
 
             Constants.CONN.setConnectTimeout(10000);
             Constants.CONN.setRequestMethod("POST");
-            Constants.CONN.setDoInput(true);  //从服务器获得数据
+            Constants.CONN.setDoInput(true);
             Constants.CONN.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            Constants.CONN.connect();   //建立到远程对象的实际连接
+            Constants.CONN.connect();
             Log.i("connectedServerURL","访问服务器地址为： "+url_path);
 
             if(obj.length>0){
                 Log.i("connectedServerParam","传入服务器参数为： "+obj[0].toString());
                 byte[] bypes = obj[0].toString().getBytes(encode);
-                OutputStream os=Constants.CONN.getOutputStream();   //返回打开连接读取的输入流
-                os.write(bypes);    // 输入参数
+                OutputStream os=Constants.CONN.getOutputStream();
+                os.write(bypes);
                 os.flush();
                 os.close();
             }
@@ -55,7 +55,7 @@ public class HttpUtils {
             e.printStackTrace();
         } finally {
             if (Constants.CONN != null) {
-                Constants.CONN.disconnect();  //中断连接
+                Constants.CONN.disconnect();
             }
         }
         return jsonString;

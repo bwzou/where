@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.creation.where.R;
-import com.creation.where.activity.LocationMainActivity;
+import com.creation.where.activity.FootPrintActivity;
 import com.creation.where.adapter.StatusAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -18,7 +18,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,12 +29,11 @@ public class StatusFragment extends Fragment {
 	private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
 	private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
 
-
 	private String imageName;
 	private PullToRefreshListView pull_refresh_list;      //使用第三方类库
 	private List<JSONObject> articles=new ArrayList<JSONObject>();
 	
-//	private JSONArray datas = new JSONArray();
+	private JSONArray datas = new JSONArray();
 	private StatusAdapter adapter;
 	private ListView actualListView;
 	private int page = 0;
@@ -75,7 +73,7 @@ public class StatusFragment extends Fragment {
 				{
 					case 1:         //转到定位的界面去
 						Intent intent;
-						intent = new Intent(getActivity(), LocationMainActivity.class);
+						intent = new Intent(getActivity(), FootPrintActivity.class);
 						startActivity(intent);
 						break;
 					default:
