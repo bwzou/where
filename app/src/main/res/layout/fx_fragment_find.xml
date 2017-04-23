@@ -29,7 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/iv_newworld"
-            android:text="新世界"
+            android:text="微世界"
             android:textColor="#353535"
             android:textSize="16sp" />
         <View
@@ -41,7 +41,7 @@
     </RelativeLayout>
     
     <RelativeLayout
-        android:id="@+id/re_createworld"
+        android:id="@+id/re_together"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/fx_btn_list_item_bg"
@@ -49,7 +49,7 @@
         android:paddingLeft="12dp" >
 
         <ImageView
-            android:id="@+id/iv_createworld"
+            android:id="@+id/iv_together"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentLeft="true"
@@ -62,8 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/iv_createworld"
-            android:text="创世界"
+            android:layout_toRightOf="@id/iv_together"
+            android:text="拼途"
             android:textColor="#353535"
             android:textSize="16sp" />
     </RelativeLayout>

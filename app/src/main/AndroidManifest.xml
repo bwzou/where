@@ -116,10 +116,6 @@
             android:label="@string/title_activity_new_world"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".activity.CreateWorldActivity"
-            android:label="@string/title_activity_create_world"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
             android:name=".activity.TravelActivity"
             android:label="@string/title_activity_travel"
             android:theme="@android:style/Theme.NoTitleBar" />
@@ -127,6 +123,10 @@
             android:name=".activity.FootPrintActivity"
             android:label="@string/title_activity_foot_print"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.TogetherActivity"
+            android:label="@string/title_activity_together"
+            android:theme="@android:style/Theme.NoTitleBar"/>
     </application>
 
 </manifest>

@@ -44,7 +44,7 @@
             android:layout_weight="1"
             android:layout_margin="8dp"
             android:onClick="search"
-            android:background="#04980e"
+            android:background="#25e233"
             android:text="搜索"
             android:textSize="18sp"
             android:textColor="#ffffff"/>
@@ -73,7 +73,7 @@
             android:layout_weight="1"
             android:onClick="start"
             android:layout_margin="8dp"
-            android:background="#04980e"
+            android:background="#25e233"
             android:textColor="#ffffff"
             android:textSize="18sp"
             android:text="开始" />
@@ -85,7 +85,7 @@
             android:layout_weight="1"
             android:onClick="stop"
             android:layout_margin="8dp"
-            android:background="#04980e"
+            android:background="#25e233"
             android:textColor="#ffffff"
             android:textSize="18sp"
             android:text="停止" />
@@ -97,7 +97,7 @@
             android:layout_weight="1"
             android:onClick="remove"
             android:layout_margin="8dp"
-            android:background="#04980e"
+            android:background="#25e233"
             android:textColor="#ffffff"
             android:textSize="18sp"
             android:text="删除" />

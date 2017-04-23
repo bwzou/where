@@ -40,5 +40,6 @@
     <string name="title_activity_about_tabs">AboutTabsActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_foot_print">FootPrintActivity</string>
+    <string name="title_activity_together">TogetherActivity</string>
 
 </resources>

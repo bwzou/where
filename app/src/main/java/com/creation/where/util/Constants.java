@@ -13,6 +13,7 @@ public class Constants {
     public static final String USR_LOGIN=HOST+"LoginController";
     public static final String USR_MESSAGE=HOST+"MessageController";
     public static final String USR_FOOTPRINT=HOST+"FootprintController";
+    public static final String USR_TOGETHER=HOST+"TogetherController";
     public static HttpURLConnection CONN=null;
     public static User user=null;
 

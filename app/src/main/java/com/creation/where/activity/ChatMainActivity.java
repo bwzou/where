@@ -168,31 +168,34 @@ public class ChatMainActivity extends Activity {
             @Override
             public void handleMessage(android.os.Message msg) {
                 if (msg.what == 1) {
-                    if(isOtherFirstLoc){
-                        isOtherFirstLoc=false;
-                        LatLng ll = new LatLng((myLocate.getLatitude()+otherMessage.getLatitude())/2,
-                                (myLocate.getLongitude()+otherMessage.getLongitude())/2);
-                        MapStatus.Builder builder = new MapStatus.Builder();
-                        double dist= LocationUtils.getDistance(myLocate.getLatitude(),myLocate.getLongitude(),otherMessage.getLatitude(),otherMessage.getLongitude());
-                        double d=dist/8;
-                        float level=0.0f;
-                        for(int i=0;i<Constants.Distance.length;i++){
-                            if(d<Constants.Distance[i]) {
-                                level = Constants.Level[i];
-                                Log.i("ChatMainActivity Level"," "+level);
-                                break;
+                    if(otherMessage.getMsg_id()!=0){
+                        if(isOtherFirstLoc){
+                            isOtherFirstLoc=false;
+                            LatLng ll = new LatLng((myLocate.getLatitude()+otherMessage.getLatitude())/2,
+                                    (myLocate.getLongitude()+otherMessage.getLongitude())/2);
+                            MapStatus.Builder builder = new MapStatus.Builder();
+                            double dist= LocationUtils.getDistance(myLocate.getLatitude(),myLocate.getLongitude(),otherMessage.getLatitude(),otherMessage.getLongitude());
+                            double d=dist/8;
+                            float level=0.0f;
+                            for(int i=0;i<Constants.Distance.length;i++){
+                                if(d<Constants.Distance[i]) {
+                                    level = Constants.Level[i];
+                                    Log.i("ChatMainActivity Level"," "+level);
+                                    break;
+                                }
                             }
+                            builder.target(ll).zoom(level);
+                            mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
                         }
-                        builder.target(ll).zoom(level);
-                        mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
-                    }
 //                  drawOtherMark(otherMessage.getLatitude(),otherMessage.getLongitude());
-                    drawOtherMark(22.747752,113.604378);
-                    if(isOtherFirstMsg){
-                        initOtherPop(otherMessage.getMsg(),otherMessage.getLatitude(),otherMessage.getLongitude());
-                        isOtherFirstMsg=false;
-                    }else
-                        updateOtherPop(otherMessage.getMsg(),otherMessage.getLatitude(),otherMessage.getLongitude());
+                        drawOtherMark(22.747752,113.604378);
+                        if(isOtherFirstMsg){
+                            initOtherPop(otherMessage.getMsg(),otherMessage.getLatitude(),otherMessage.getLongitude());
+                            isOtherFirstMsg=false;
+                        }else {
+                            updateOtherPop(otherMessage.getMsg(), otherMessage.getLatitude(), otherMessage.getLongitude());
+                        }
+                    }
                 } else if (msg.what == 0){
                     ShowErrorInf( "服务器请求异常！");
                 }
@@ -253,7 +256,7 @@ public class ChatMainActivity extends Activity {
     private Message getMessage() {     //实际生产中都是有服务器推送的
         //查找最近一次的未读消息
         Message message=new Message();
-        message.setFrom_user_id(5);
+        message.setFrom_user_id(Constants.user.getId());
         message.setTo_user_id(13);
 
         final List<Param> params=new ArrayList<>();

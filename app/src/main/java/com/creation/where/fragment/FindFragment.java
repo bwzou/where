@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.creation.where.R;
-import com.creation.where.activity.CreateWorldActivity;
 import com.creation.where.activity.NewWorldActivity;
+import com.creation.where.activity.TogetherActivity;
 import com.creation.where.activity.TravelActivity;
 
 public class FindFragment extends Fragment implements View.OnClickListener{
@@ -23,7 +23,7 @@ public class FindFragment extends Fragment implements View.OnClickListener{
 	    public void onActivityCreated(Bundle savedInstanceState) {
 	        super.onActivityCreated(savedInstanceState);
 	        getView().findViewById(R.id.re_newworld).setOnClickListener(this);
-	        getView().findViewById(R.id.re_createworld).setOnClickListener(this);
+	        getView().findViewById(R.id.re_together).setOnClickListener(this);
 	        getView().findViewById(R.id.re_travel).setOnClickListener(this);
 	        getView().findViewById(R.id.re_shopping).setOnClickListener(this);
 	        getView().findViewById(R.id.re_games).setOnClickListener(this);
@@ -37,8 +37,8 @@ public class FindFragment extends Fragment implements View.OnClickListener{
 				case R.id.re_newworld:
 					startActivity(new Intent(getActivity(), NewWorldActivity.class));
 					break;
-				case R.id.re_createworld:
-					startActivity(new Intent(getActivity(), CreateWorldActivity.class));
+				case R.id.re_together:
+					startActivity(new Intent(getActivity(), TogetherActivity.class));
 					break;
 				case R.id.re_travel:
 					startActivity(new Intent(getActivity(), TravelActivity.class));

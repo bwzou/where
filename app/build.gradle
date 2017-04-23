@@ -25,6 +25,11 @@ android {
     lintOptions {
         abortOnError false
     }
+    allprojects {
+        repositories {
+            maven { url 'https://jitpack.io' }
+        }
+    }
 }
 
 dependencies {
@@ -35,6 +40,9 @@ dependencies {
     compile project(':library')
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support:support-v13:25.1.1'
+    compile 'com.github.yellowhai:TimeSelector:1.4'          //时间控件
+    compile 'com.github.1em0nsOft:LemonHello4Android:1.0.1'       //对话框控件
+    compile 'com.github.1em0nsOft:LemonBubble4Android:1.0.9'
     testCompile 'junit:junit:4.12'
 
 }
