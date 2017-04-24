@@ -72,15 +72,6 @@ public class TogetherActivity extends Activity {
         et_transportation.addTextChangedListener(new TextChange());
         et_cost_money.addTextChangedListener(new TextChange());
 
-//        View.OnClickListener btnPublishClickListener = new View.OnClickListener() {
-//            public void onClick(View v) {
-//                //获取内容并且显示
-//                setTogether();
-//                Log.i("connectedServerURL","访问服务器地址为： 哈哈哈哈哈");
-//            }
-//        };
-//        btn_publish.setOnClickListener(btnPublishClickListener);
-
         btn_publish.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 LemonHello.getInformationHello("您确定要发布吗？", "发布行程后您将找到小伙伴一起同行。")

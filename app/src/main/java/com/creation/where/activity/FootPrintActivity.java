@@ -186,7 +186,7 @@ public class FootPrintActivity extends Activity {
                         float level=0.0f;
                         for(int i=0;i<Constants.Distance.length;i++){
                             if(d<Constants.Distance[i]) {
-                                level = Constants.Level[i];
+                                level = Constants.Level[i];                 //放大一级、i不可能为0
                                 Log.i("ChatMainActivity Level"," "+level);
                                 break;
                             }

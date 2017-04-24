@@ -23,4 +23,17 @@
     <color name="btn_logout_normal">#d33f3f</color>
     <color name="btn_logout_pressed">#DA5A4D</color>
 
+    <color name="colorPrimary">#f1f2f2</color>
+    <color name="colorPrimaryDark">#009688</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000</color>
+    <color name="gray">#808080</color>
+    <color name="purple">#77399c</color>
+    <color name="darkgray">#a9a9a9</color>
+
+    <color name="transparent_cus_5f">#5f000000</color>
+    <color name="grey_btn_color_pressed">#ffd8d8d8</color>
+    <color name="grey_btn_stroke_color_pressed">#ff9e9e9e</color>
+
+    <color name="white">#ffffff</color>
 </resources>

@@ -22,4 +22,22 @@
         <item name="colorControlHighlight">#22000000</item><!--覆盖色，按下的颜色  -->
     </style>
 
+    <!-- Base application theme. -->
+    <style name="CustomAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- 窗口的背景颜色 -->
+        <!--<item name="android:windowBackground">@android:color/white</item>-->
+
+        <!--<item name="android:windowActionBar">false</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+
+    </style>
+
 </resources>

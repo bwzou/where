@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.creation.where.R;
-import com.creation.where.activity.NewWorldActivity;
+import com.creation.where.activity.FootPrintActivity;
 import com.creation.where.activity.TogetherActivity;
 import com.creation.where.activity.TravelActivity;
 
@@ -35,7 +35,7 @@ public class FindFragment extends Fragment implements View.OnClickListener{
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
 				case R.id.re_newworld:
-					startActivity(new Intent(getActivity(), NewWorldActivity.class));
+					startActivity(new Intent(getActivity(), FootPrintActivity.class));
 					break;
 				case R.id.re_together:
 					startActivity(new Intent(getActivity(), TogetherActivity.class));
