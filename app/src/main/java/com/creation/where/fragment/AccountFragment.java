@@ -15,7 +15,6 @@ import com.creation.where.activity.DownloadMapActivity;
 import com.creation.where.activity.MyAlbumActivity;
 import com.creation.where.activity.MyCollectionActivity;
 import com.creation.where.activity.MyFootprintActivity;
-import com.creation.where.activity.MyFriendsActivity;
 import com.creation.where.activity.MyInfoActivity;
 import com.creation.where.activity.SettingsActivity;
 
@@ -46,8 +45,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     private void setListener(){
 
         getView().findViewById(R.id.re_myinfo).setOnClickListener(this);
-        
-        getView().findViewById(R.id.re_myfriend).setOnClickListener(this);
         getView().findViewById(R.id.re_myfoot).setOnClickListener(this);
         
         getView().findViewById(R.id.re_xiangce).setOnClickListener(this);
@@ -78,9 +75,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.re_myinfo:
                 startActivity(new Intent(getActivity(), MyInfoActivity.class));
-                break;
-            case R.id.re_myfriend:
-                startActivity(new Intent(getActivity(), MyFriendsActivity.class));
                 break;
             case R.id.re_myfoot:
                 startActivity(new Intent(getActivity(), MyFootprintActivity.class));

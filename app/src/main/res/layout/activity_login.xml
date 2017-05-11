@@ -1,48 +1,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:orientation="vertical">
+    tools:context="com.creation.where.activity.LoginActivity"
+    style="@style/activity_page">
 
     <RelativeLayout
         android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
-        android:background="@color/fx_common_top_bar_blue">
+        style="@style/topbar_bg" >
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:onClick="back"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/fx_topbar_back" />
-
-        <View
-            android:id="@+id/view_temp"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/iv_back"
-            android:background="#14191A" />
+            style="@style/topbar_return_img" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/view_temp"
-            android:text="使用手机号登录"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
+            style="@style/topbar_title"
+            android:text="使用手机号登录" />
+
+        <!--<ImageView-->
+            <!--style="@style/topbar_right_img"-->
+            <!--android:src="@drawable/fx_main_activity_add"/>-->
     </RelativeLayout>
 
     <LinearLayout
@@ -71,7 +47,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:text="中国"
-                android:textColor="#45c01a"
+                android:textColor="@color/fbutton_color_emerald"
                 android:textSize="16sp" />
 
             <View
@@ -96,6 +72,7 @@
                 android:paddingLeft="90dp"
                 android:singleLine="true"
                 android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -112,19 +89,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="48dp">
-
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_centerVertical="true"
                 android:background="@drawable/fx_bg_et"
                 android:hint="填写密码"
                 android:inputType="textPassword"
                 android:paddingLeft="90dp"
                 android:singleLine="true"
                 android:textColorHint="#DDDDDD"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:id="@+id/tv_password"
@@ -138,48 +117,59 @@
                 android:textSize="16sp" />
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/btn_login"
+        <!--<Button-->
+            <!--android:id="@+id/btn_login"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="24dp"-->
+            <!--android:background="@drawable/fx_bg_btn_green"-->
+            <!--android:enabled="false"-->
+            <!--android:paddingBottom="7dp"-->
+            <!--android:paddingTop="7dp"-->
+            <!--android:text="登录"-->
+            <!--android:textColor="@color/fx_login_btn_text_color"-->
+            <!--android:textSize="18sp" />-->
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/fbtn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="@drawable/fx_bg_btn_green"
-            android:enabled="false"
-            android:paddingBottom="7dp"
-            android:paddingTop="7dp"
             android:text="登录"
+            android:textSize="18sp"
             android:textColor="@color/fx_login_btn_text_color"
-            android:textSize="18sp" />
+            android:enabled="false"
+            fbutton:buttonColor="@color/fbutton_color_emerald"
+            fbutton:shadowColor="@color/fbutton_color_nephritis"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="2dp"
+            fbutton:cornerRadius="5dp" />
 
-        <TextView
-            android:id="@+id/tv_wenti"
+        <info.hoang8f.widget.FButton
+            android:id="@+id/fbtn_qtlogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="尚未注册？"
+            android:textColor="@color/newBlue"
+            android:textSize="14sp"
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
-            android:text="登录遇到问题？"
-            android:textColor="#576B95"
-            android:textSize="14sp" />
+            fbutton:buttonColor="@color/fbutton_color_clouds"
+            fbutton:shadowColor="@color/fbutton_color_silver"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="2dp"
+            fbutton:cornerRadius="5dp" />
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_qtlogin"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@drawable/fx_bg_btn_gray"-->
+            <!--android:text="尚未注册？"-->
+            <!--android:textColor="@color/newBlue"-->
+            <!--android:textSize="14sp" />-->
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/btn_qtlogin"
-            android:layout_width="wrap_content"
-            android:layout_height="46dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="22dp"
-            android:background="@drawable/fx_bg_btn_gray"
-            android:gravity="center"
-            android:text="@string/go_register"
-            android:textColor="#353535"
-            android:textSize="16sp" />
-
-
-    </RelativeLayout>
 
 </LinearLayout>

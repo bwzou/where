@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_foot_print"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.creation.where.activity.LocationMainActivity" >
+    style="@style/activity_page" >
 
     <com.baidu.mapapi.map.MapView
         android:id="@+id/bmap_footprint_view"
@@ -13,38 +11,29 @@
         android:clickable="true" />
 
     <RelativeLayout
-        android:id="@+id/foot_title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
-        android:layout_alignParentTop="true"
-        android:background="@color/common_top_bar_blue"
-        android:visibility="visible">
+        android:id="@+id/title"
+        style="@style/topbar_bg" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:text="留一个足记，我曾来过"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
+    <ImageView
+        android:id="@+id/iv_back"
+        android:onClick="back"
+        style="@style/topbar_return_img" />
 
-        <ImageView
-            android:id="@+id/btn_foot_send"
-            android:layout_width="56dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:src="@drawable/fx_main_activity_add" />   <!-- 发送 -->
+    <TextView
+        style="@style/topbar_title"
+        android:text="微世界" />
 
-        <ImageView
-            android:id="@+id/iv_foot_search"
-            android:layout_width="56dp"
-            android:layout_height="match_parent"
-            android:layout_toLeftOf="@id/btn_foot_send"
-            android:clickable="true"
-            android:src="@drawable/fx_main_activity_search" />   <!-- 查找 -->
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:src="@drawable/fx_main_activity_search" />
+
+    <ImageView
+        style="@style/topbar_right_img"
+        android:src="@drawable/fx_main_activity_add"/>
     </RelativeLayout>
 
     <LinearLayout

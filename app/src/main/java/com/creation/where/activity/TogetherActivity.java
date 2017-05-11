@@ -1,6 +1,5 @@
 package com.creation.where.activity;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.creation.where.R;
+import com.creation.where.base.BaseActivity;
 import com.creation.where.po.Param;
 import com.creation.where.po.Together;
 import com.creation.where.util.Constants;
@@ -37,7 +37,7 @@ import java.util.List;
 
 import static java.lang.Double.parseDouble;
 
-public class TogetherActivity extends Activity {
+public class TogetherActivity extends BaseActivity {
     private EditText et_selectTime;
     private EditText et_destination;
     private EditText et_event;

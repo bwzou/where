@@ -42,4 +42,8 @@
     <string name="title_activity_foot_print">FootPrintActivity</string>
     <string name="title_activity_together">TogetherActivity</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tgcontent">TgcontentActivity</string>
+
 </resources>

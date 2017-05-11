@@ -1,6 +1,5 @@
 package com.creation.where.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,22 +11,24 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.creation.where.R;
+import com.creation.where.base.BaseActivity;
 import com.creation.where.po.User;
 import com.creation.where.util.Constants;
 import com.creation.where.util.HttpUtils;
 import com.google.gson.Gson;
 
+import info.hoang8f.widget.FButton;
+
 import static com.creation.where.util.DebugUtils.ShowErrorInf;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends BaseActivity {
     private EditText et_usertel;
     private EditText et_password;
-    private Button btn_login;
-    private Button btn_qtlogin;
+    private FButton loginBtn;
+    private FButton qtLoginBtn;
 
     private Handler handler;
     public  ProgressDialog pd;
@@ -39,8 +40,8 @@ public class LoginActivity extends Activity {
 		
 		et_usertel = (EditText) findViewById(R.id.et_usertel);
         et_password = (EditText) findViewById(R.id.et_password);
-        btn_login = (Button) findViewById(R.id.btn_login);
-        btn_qtlogin = (Button) findViewById(R.id.btn_qtlogin);
+        loginBtn = (FButton) findViewById(R.id.fbtn_login);
+        qtLoginBtn = (FButton) findViewById(R.id.fbtn_qtlogin);
         
         TextChange textChange = new TextChange();
         et_usertel.addTextChangedListener(textChange);
@@ -63,8 +64,8 @@ public class LoginActivity extends Activity {
 
             }
         });
-        
-        btn_login.setOnClickListener(new View.OnClickListener() {
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pd = new ProgressDialog(LoginActivity.this);
@@ -76,7 +77,7 @@ public class LoginActivity extends Activity {
             }
         });
 
-        btn_qtlogin.setOnClickListener(new View.OnClickListener() {
+        qtLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
@@ -179,11 +180,11 @@ public class LoginActivity extends Activity {
             boolean Sign2 = et_usertel.getText().length() > 0;
             boolean Sign3 = et_password.getText().length() > 0;
             if (Sign2 & Sign3) {
-                btn_login.setEnabled(true);
+                loginBtn.setEnabled(true);
             }
             // 在layout文件中，对Button的text属性应预先设置默认值，否则刚打开程序的时候Button是无显示的
             else {
-                btn_login.setEnabled(false);
+                loginBtn.setEnabled(false);
             }
         }
     }

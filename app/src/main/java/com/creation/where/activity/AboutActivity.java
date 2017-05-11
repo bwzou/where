@@ -1,13 +1,13 @@
 package com.creation.where.activity;
 
-import com.creation.where.R;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class AboutActivity extends Activity {
+import com.creation.where.R;
+import com.creation.where.base.BaseActivity;
+
+public class AboutActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

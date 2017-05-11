@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+    android:id="@+id/tab_title"
+    style="@style/topbar_bg" >
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/topbar_tab_bg"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/tvTopTabViewTabFirst"
+                style="@style/topbar_tab_tv_left"
+                android:text="消息" />
+
+            <View style="@style/divider_vertical_1dp_white" />
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/llTopTabViewContainer"-->
+                <!--style="@style/ll_horizontal_wrap_match" >-->
+            <!--</LinearLayout>-->
+
+            <TextView
+                android:id="@+id/tvTopTabViewTabSecond"
+                style="@style/topbar_tab_tv_right"
+                android:text="圈子" />
+
+            <View style="@style/divider_vertical_1dp_white" />
+
+            <TextView
+                android:id="@+id/tvTopTabViewTabLast"
+                style="@style/topbar_tab_tv_right"
+                android:text="朋友" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tab_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

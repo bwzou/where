@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.creation.where.R;
 import com.creation.where.activity.FootPrintActivity;
 import com.creation.where.activity.TogetherActivity;
-import com.creation.where.activity.TravelActivity;
 
 public class FindFragment extends Fragment implements View.OnClickListener{
 	    @Override
@@ -39,9 +38,6 @@ public class FindFragment extends Fragment implements View.OnClickListener{
 					break;
 				case R.id.re_together:
 					startActivity(new Intent(getActivity(), TogetherActivity.class));
-					break;
-				case R.id.re_travel:
-					startActivity(new Intent(getActivity(), TravelActivity.class));
 					break;
 				case R.id.re_shopping:
 					//joinQQGroup("ycxd0w_eXmTbKIjyDdHb5Dy_-ZhY8E7t");

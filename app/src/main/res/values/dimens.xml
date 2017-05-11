@@ -10,4 +10,12 @@
     <dimen name="smallerPadding">3.0dip</dimen>
 
 
+    <!--start topbar -->
+    <dimen name="topbar_height">50dp</dimen>
+    <dimen name="radius">3dp</dimen>
+    <dimen name="text_size_huge">21sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!--end topbar -->
+
 </resources>

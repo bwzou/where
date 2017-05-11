@@ -127,12 +127,12 @@ public class ConversationFragment extends Fragment {
      */
     private void loadConversationList(){
         conversationList = new ArrayList<IMConversation>();
-        conversationList.add(new IMConversation(R.drawable.user01,"Jobowen",1,"10:23","my love",true));
-        conversationList.add(new IMConversation(R.drawable.user02,"李海兰",1,"10:23"," so what",true));
-        conversationList.add(new IMConversation(R.drawable.user03,"刘洋",3,"10:23","no zuo no die",true));
-        conversationList.add(new IMConversation(R.drawable.user04,"林芷昀",1,"10:23","哈哈哈",false));
-        conversationList.add(new IMConversation(R.drawable.user05,"李伟杰",3,"10:23","你们真逗！",false));
-        conversationList.add(new IMConversation(R.drawable.user06,"蔡嘉敏",1,"10:23","可不是嘛！",false));
+        conversationList.add(new IMConversation(R.drawable.user01,"Jobowen",1,"10:23","my love",false));
+        conversationList.add(new IMConversation(R.drawable.user02,"李海兰",1,"10:23"," so what",false));
+        conversationList.add(new IMConversation(R.drawable.user03,"刘洋",3,"10:23","no zuo no die",false));
+        conversationList.add(new IMConversation(R.drawable.user04,"林芷昀",1,"10:23","哈哈哈",true));
+        conversationList.add(new IMConversation(R.drawable.user05,"李伟杰",0,"10:23","你们真逗！",true));
+        conversationList.add(new IMConversation(R.drawable.user06,"蔡嘉敏",0,"10:23","可不是嘛！",true));
     }
 	
 }

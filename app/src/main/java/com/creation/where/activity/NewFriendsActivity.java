@@ -1,11 +1,11 @@
 package com.creation.where.activity;
 
 import android.os.Bundle;
-import android.app.Activity;
 
 import com.creation.where.R;
+import com.creation.where.base.BaseActivity;
 
-public class NewFriendsActivity extends Activity {
+public class NewFriendsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

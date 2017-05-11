@@ -1,6 +1,5 @@
 package com.creation.where.activity;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +27,7 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.creation.where.R;
+import com.creation.where.base.BaseActivity;
 import com.creation.where.po.Footprint;
 import com.creation.where.po.Param;
 import com.creation.where.util.Constants;
@@ -44,7 +44,7 @@ import java.util.TimerTask;
 import static com.creation.where.util.Constants.user;
 import static com.creation.where.util.DebugUtils.ShowErrorInf;
 
-public class FootPrintActivity extends Activity {
+public class FootPrintActivity extends BaseActivity {
 
     // 定位相关
     LocationClient mLocClient;
@@ -387,6 +387,10 @@ public class FootPrintActivity extends Activity {
 
         public void onReceivePoi(BDLocation poiLocation) {
         }
+    }
+
+    public void back(View view) {
+        finish();
     }
 
     @Override

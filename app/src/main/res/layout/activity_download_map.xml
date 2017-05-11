@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_download_map"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#EBEBEB"
-    android:orientation="vertical">
+    style="@style/activity_page">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -143,7 +140,7 @@
         <ListView
             android:id="@+id/hotcitylist"
             android:layout_width="fill_parent"
-            android:background="#3d3f3e"
+            android:background="#bdc3c7"
             android:layout_height="180dip" />
 
         <TextView
@@ -156,7 +153,7 @@
             android:id="@+id/allcitylist"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="#3d3f3e"/>
+            android:background="#bdc3c7"/>
     </LinearLayout>
 
     <LinearLayout

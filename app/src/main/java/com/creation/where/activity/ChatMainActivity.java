@@ -1,6 +1,5 @@
 package com.creation.where.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,6 +29,7 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.creation.where.R;
+import com.creation.where.base.BaseActivity;
 import com.creation.where.po.MapChatMsg;
 import com.creation.where.po.Message;
 import com.creation.where.po.Param;
@@ -45,7 +45,7 @@ import java.util.TimerTask;
 
 import static com.creation.where.util.DebugUtils.ShowErrorInf;
 
-public class ChatMainActivity extends Activity {
+public class ChatMainActivity extends BaseActivity {
     // 定位相关
     LocationClient mLocClient;
     public MyLocationListenner myListener = new MyLocationListenner();

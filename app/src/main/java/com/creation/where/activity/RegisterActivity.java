@@ -1,6 +1,5 @@
 package com.creation.where.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,24 +16,27 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.creation.where.R;
+import com.creation.where.base.BaseActivity;
 import com.creation.where.po.User;
 import com.creation.where.util.Constants;
 import com.creation.where.util.HttpUtils;
 
+import info.hoang8f.widget.FButton;
+
 import static com.creation.where.util.DebugUtils.ShowErrorInf;
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends BaseActivity {
 	private EditText et_usernick;
     private EditText et_usertel;
     private EditText et_password;
-    private Button btn_register;
+//    private Button btn_register;
+    private FButton registerBtn;
     private TextView tv_xieyi;
     private ImageView iv_hide;
     private ImageView iv_show;
@@ -61,7 +63,7 @@ public class RegisterActivity extends Activity {
         et_usernick.addTextChangedListener(new TextChange());
         et_usertel.addTextChangedListener(new TextChange());
         et_password.addTextChangedListener(new TextChange());
-        btn_register = (Button) findViewById(R.id.btn_register);
+        registerBtn = (FButton) findViewById(R.id.fbtn_register);
         tv_xieyi = (TextView) findViewById(R.id.tv_xieyi);
         iv_hide = (ImageView) findViewById(R.id.iv_hide);
 
@@ -117,7 +119,7 @@ public class RegisterActivity extends Activity {
             }
         });
 
-        btn_register.setOnClickListener(new OnClickListener() {
+        registerBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 String usernick = et_usernick.getText().toString().trim();
@@ -237,11 +239,11 @@ public class RegisterActivity extends Activity {
             boolean Sign2 = et_usertel.getText().length() > 0;
             boolean Sign3 = et_password.getText().length() > 0;
             if (Sign1 & Sign2 & Sign3) {
-                btn_register.setEnabled(true);
+                registerBtn.setEnabled(true);
             }
             // 在layout文件中，对Button的text属性应预先设置默认值，否则刚打开程序的时候Button是无显示的
             else {
-                btn_register.setEnabled(false);
+                registerBtn.setEnabled(false);
             }
         }
 

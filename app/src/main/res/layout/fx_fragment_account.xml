@@ -6,7 +6,7 @@
     >
     
 <LinearLayout
-    android:paddingBottom="40dp"
+    android:paddingBottom="150dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ebebeb"
@@ -66,40 +66,40 @@
             />
     </RelativeLayout>
 
-     <RelativeLayout
-        android:id="@+id/re_myfriend"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/fx_btn_list_item_bg"
-        android:clickable="true"
-        android:paddingLeft="12dp">
+     <!--<RelativeLayout-->
+        <!--android:id="@+id/re_myfriend"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:background="@drawable/fx_btn_list_item_bg"-->
+        <!--android:clickable="true"-->
+        <!--android:paddingLeft="12dp">-->
 
-        <ImageView
-            android:id="@+id/iv_myfriend"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:src="@drawable/fx_icon_myfriends" />
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_myfriend"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="12dp"-->
+            <!--android:src="@drawable/fx_icon_myfriends" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/iv_myfriend"
-            android:text="我的朋友"
-            android:textColor="#353535"
-            android:textSize="16sp" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_toRightOf="@id/iv_myfriend"-->
+            <!--android:text="我的朋友"-->
+            <!--android:textColor="#353535"-->
+            <!--android:textSize="16sp" />-->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="12dp"
-            android:background="#dadada" />
-    </RelativeLayout>
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.1dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginRight="12dp"-->
+            <!--android:background="#dadada" />-->
+    <!--</RelativeLayout>-->
 
     <RelativeLayout
         android:id="@+id/re_myfoot"
@@ -124,16 +124,22 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/iv_myfoot"
-            android:text="我的足记"
+            android:text="足记"
             android:textColor="#353535"
             android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="12dp"
+            android:background="#dadada" />
     </RelativeLayout>
     
     <RelativeLayout
         android:id="@+id/re_xiangce"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/fx_btn_list_item_bg"
         android:clickable="true"
         android:paddingLeft="12dp">

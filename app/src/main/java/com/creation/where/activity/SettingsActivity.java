@@ -1,12 +1,12 @@
 package com.creation.where.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.creation.where.R;
+import com.creation.where.base.BaseActivity;
 
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

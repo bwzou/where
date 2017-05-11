@@ -1,68 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:orientation="vertical">
+    style="@style/activity_page">
 
     <RelativeLayout
         android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
-        android:layout_alignParentTop="true"
-        android:background="@color/common_top_bar_blue"
-        android:visibility="visible">
+        style="@style/topbar_bg" >
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
             android:onClick="back"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/fx_topbar_back" />
-
-        <View
-            android:id="@+id/view_temp"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/iv_back"
-            android:background="#14191A" />
+            style="@style/topbar_return_img" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/view_temp"
-            android:text="一起拼途"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/btn_send"
-            android:layout_width="56dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:src="@drawable/fx_main_activity_add" />   <!-- 发送 -->
+            style="@style/topbar_title"
+            android:text="一起拼途" />
 
         <ImageView
             android:id="@+id/iv_search"
-            android:layout_width="56dp"
+            android:layout_width="170dp"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@id/btn_send"
+            android:layout_alignParentRight="true"
             android:clickable="true"
-            android:src="@drawable/fx_main_activity_search" />   <!-- 查找 -->
+            android:src="@drawable/fx_main_activity_search" />
+
+        <ImageView
+            style="@style/topbar_right_img"
+            android:src="@drawable/fx_main_activity_add"/>
     </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -99,6 +65,7 @@
                 android:paddingLeft="90dp"
                 android:singleLine="true"
                 android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -129,6 +96,7 @@
                 android:paddingLeft="90dp"
                 android:singleLine="true"
                 android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -156,6 +124,7 @@
                 android:hint="请详细填写"
                 android:paddingLeft="90dp"
                 android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -183,6 +152,7 @@
                 android:inputType="numberSigned"
                 android:paddingLeft="90dp"
                 android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -209,6 +179,7 @@
                 android:hint="此次行程交通工具"
                 android:paddingLeft="90dp"
                 android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
@@ -236,6 +207,7 @@
                 android:inputType="numberDecimal"
                 android:paddingLeft="90dp"
                 android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView

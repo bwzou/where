@@ -57,20 +57,17 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".activity.RegisterActivity"
-            android:label="@string/title_activity_register"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_register" />
         <activity
             android:name=".activity.AboutActivity"
-            android:label="@string/title_activity_about"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_about" />
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
         <!-- 调用百度地图服务 -->
         <service
@@ -78,58 +75,35 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity
-            android:name=".activity.LocationMainActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name=".activity.ChatMainActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name=".activity.SettingsActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name=".activity.MyInfoActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name=".activity.MyFriendsActivity"
-            android:label="@string/title_activity_my_friends"
-            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".activity.LocationMainActivity" />
+        <activity android:name=".activity.ChatMainActivity" />
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.MyInfoActivity" />
         <activity
             android:name=".activity.MyFootprintActivity"
-            android:label="@string/title_activity_my_footprint"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_my_footprint" />
         <activity
             android:name=".activity.MyAlbumActivity"
-            android:label="@string/title_activity_my_album"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_my_album" />
         <activity
             android:name=".activity.MyCollectionActivity"
-            android:label="@string/title_activity_my_collection"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_my_collection" />
         <activity
             android:name=".activity.DownloadMapActivity"
-            android:label="@string/title_activity_download_map"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_download_map" />
         <activity
             android:name=".activity.NewFriendsActivity"
-            android:label="@string/title_activity_new_friends"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name=".activity.NewWorldActivity"
-            android:label="@string/title_activity_new_world"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name=".activity.TravelActivity"
-            android:label="@string/title_activity_travel"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_new_friends" />
         <activity
             android:name=".activity.FootPrintActivity"
-            android:label="@string/title_activity_foot_print"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/title_activity_foot_print" />
         <activity
             android:name=".activity.TogetherActivity"
-            android:label="@string/title_activity_together"
-            android:theme="@android:style/Theme.NoTitleBar"/>
+            android:label="@string/title_activity_together" />
+        <activity
+            android:name=".activity.TgcontentActivity"
+            android:label="@string/title_activity_tgcontent"
+            android:theme="@style/CustomAppTheme"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package com.creation.where.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,10 +17,11 @@ import com.baidu.mapapi.map.offline.MKOfflineMap;
 import com.baidu.mapapi.map.offline.MKOfflineMapListener;
 import com.creation.where.R;
 import com.creation.where.adapter.LocalMapAdapter;
+import com.creation.where.base.BaseActivity;
 
 import java.util.ArrayList;
 
-public class DownloadMapActivity extends Activity implements MKOfflineMapListener {
+public class DownloadMapActivity extends BaseActivity implements MKOfflineMapListener {
 
     private MKOfflineMap mOffline = null;
     private TextView cidView;
